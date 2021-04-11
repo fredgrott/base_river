@@ -6,6 +6,7 @@
 
 
 
+
 import 'package:base_river/app/modules/appsplash/views/app_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:integration_test/integration_test.dart';
 
 
@@ -36,7 +38,7 @@ void main() {
     // use runAsync when yu have calls to such things as Future.delayed in the testWidgets
     testWidgets("Integration Counter increments smoke test", (WidgetTester tester) async {
       // Build our app and trigger a frame.
-      await tester.pumpWidget(MyApp());
+      await tester.pumpWidget(ProviderScope(child: AppSplashExp()));
 
       // Verify that our counter starts at 0.
       expect(find.text('0'), findsOneWidget);
@@ -54,7 +56,7 @@ void main() {
     });
 
     testWidgets('validate appbar widget', (WidgetTester tester) async {
-      await tester.pumpWidget(MyApp());
+      await tester.pumpWidget(AppSplashExp());
       find.ancestor(of: find.byType(AppBar), matching: find.text('Flutter Demo Home Page'));
     });
 

@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 const Color kTitleColor = Color(0xFF333333);
-const String kTitleString = 'Counter Example';
+const String kTitleString = 'Base River';
 // note I do not have null safety here as of yet
 // null safe-wise this should be:
 //  GenerateAppTitle? onGenerateTitle

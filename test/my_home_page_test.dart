@@ -40,7 +40,7 @@ void main() {
             Device.tabletLandscape,
           ])
           ..addScenario(
-            widget: MyHomePage(),
+            widget: const MyHomePage(),
             name: 'default page',
           );
 
@@ -63,12 +63,12 @@ void main() {
             Device.tabletLandscape,
           ])
           ..addScenario(
-            widget: MyHomePage(),
+            widget: const MyHomePage(),
             name: 'default page',
           )
           // ignore: prefer-trailing-comma
           ..addScenario(
-            widget: MyHomePage(),
+            widget: const MyHomePage(),
             name: 'tap once',
             onCreate: (scenarioWidgetKey) async {
               final finder = find.descendant(
@@ -80,7 +80,7 @@ void main() {
             },
           )
           ..addScenario(
-            widget: MyHomePage(),
+            widget: const MyHomePage(),
             name: 'tap five times',
             onCreate: (scenarioWidgetKey) async {
               final finder = find.descendant(

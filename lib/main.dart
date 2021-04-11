@@ -1,5 +1,6 @@
 import 'dart:async';
 
+
 import 'package:base_river/app/modules/appsplash/views/app_splash.dart';
 import 'package:base_river/app/shared/build_modes.dart';
 import 'package:base_river/app/shared/init_log.dart';
@@ -9,6 +10,9 @@ import 'package:base_river/app/shared/logger_types.dart';
 import 'package:base_river/app/shared/my_system_chrome_init.dart';
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/all.dart';
+
+
 
 /// The Main function of every Dart and Flutter Application which is basically the
 /// application boot-up entry point. Future-async'd and Zone'd to make sure that
@@ -106,7 +110,8 @@ Future<void> main() async {
       Catcher(
           runAppFunction: () {
             runApp(
-              MyApp(),
+              ProviderScope(child: AppSplashExp()),
+              
             );
           },
           debugConfig: debugOptions,

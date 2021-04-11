@@ -3,8 +3,7 @@
 // license that can be found in the LICENSE file.
 
 import 'package:base_river/app/modules/home/views/my_home_page.dart';
-import 'package:base_river/app/themes/material_dark_theme.dart';
-import 'package:base_river/app/themes/material_theme.dart';
+
 import 'package:base_river/app/themes/my_cupertino_color_scheme.dart';
 import 'package:base_river/app/themes/my_cupertino_text_theme.dart';
 import 'package:catcher/catcher.dart';
@@ -32,7 +31,7 @@ class _AppState extends State<BaseApp> {
   Widget build(BuildContext context) {
     return Theme(
         data:
-            brightness == Brightness.light ? materialTheme : materialDarkTheme,
+            brightness == Brightness.light ? ThemeData.from(colorScheme: const ColorScheme.light()) : ThemeData.from(colorScheme: const ColorScheme.dark()),
         child: PlatformProvider(
           //no do not make const
           // ignore: prefer_const_constructors
@@ -51,8 +50,12 @@ class _AppState extends State<BaseApp> {
                 title: 'Base River',
                 material: (_, __) {
                   return MaterialAppData(
-                    theme: materialTheme,
-                    darkTheme: materialDarkTheme,
+                    // per this doc page:
+                    // https://api.flutter.dev/flutter/material/ThemeData/ThemeData.from.html
+                    // need to use this form of setting material themes as 
+                    // colors of widget components are derived form the colorscheme
+                    theme: ThemeData.from(colorScheme: const ColorScheme.light()),
+                    darkTheme: ThemeData.from(colorScheme: const ColorScheme.dark()),
                     themeMode: brightness == Brightness.light
                         ? ThemeMode.light
                         : ThemeMode.dark,
@@ -60,8 +63,7 @@ class _AppState extends State<BaseApp> {
                 },
                 cupertino: (_, __) => CupertinoAppData(
                   theme: CupertinoThemeData(
-                      brightness:
-                          brightness, // if null will use the system theme
+                      brightness: brightness, // if null will use the system theme
                       // ignore: prefer_const_constructors
                       primaryColor: myCupertinoPrimaryColor,
                       primaryContrastingColor:
@@ -69,14 +71,14 @@ class _AppState extends State<BaseApp> {
                       textTheme: myCupertinoTextThemeData,
                       barBackgroundColor: Colors.transparent),
                 ),
-                home: SplashScreen.navigate(
-                  name: '2-2-tree.riv',
-                  next: (context) => const MyHomePage(),
-                  until: () =>
-                      Future<dynamic>.delayed(const Duration(seconds: 5)),
-                  startAnimation: 'tree',
-                ),
-                //home: MyHomePagePlatformExp(),
+                //home: SplashScreen.navigate(
+                  //name: '2-2-tree.riv',
+                  //next: (context) => const MyHomePage(),
+                 // until: () =>
+                   //   Future<dynamic>.delayed(const Duration(seconds: 5)),
+                  //startAnimation: 'tree',
+                //),
+                home: const MyHomePage(),
                 //initialPlatform: TargetPlatform.iOS,
               )),
         );

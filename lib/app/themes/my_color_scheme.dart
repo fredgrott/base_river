@@ -15,7 +15,9 @@ const Color myBarBackgroundColor = Color(0xff6200ee);
 const Color myScaffoldBackgroundColor = Color(0xff3700b3);
 
 // ignore: constant_identifier_names
-const ColorScheme MyColorScheme = ColorScheme(
+// ignore: non_constant_identifier_names
+// ignore: prefer_const_constructors
+ColorScheme MyColorScheme = ColorScheme(
     primary: myPrimaryColor,
     primaryVariant: myPrimaryVariantColor,
     secondary: mySecondaryColor,
@@ -28,7 +30,8 @@ const ColorScheme MyColorScheme = ColorScheme(
     onSurface: Colors.black,
     onBackground: Colors.black,
     onError: Colors.white,
-    brightness: Brightness.light);
+    brightness: Brightness.light
+    );
 
 // Note: CupertinoThemeData only sets:
 //         primaryColor                maps to primaryColor MD

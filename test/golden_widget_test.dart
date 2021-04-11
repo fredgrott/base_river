@@ -32,7 +32,7 @@ void main() {
           Device.tabletLandscape,
         ])
         ..addScenario(
-          widget: MyHomePage(),
+          widget: const MyHomePage(),
           name: 'default page',
         );
       await tester.pumpDeviceBuilder(builder);

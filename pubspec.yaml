@@ -72,7 +72,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - images/background.png
-    - assets/2-2-tree.riv
+    - 2-2-tree.riv
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

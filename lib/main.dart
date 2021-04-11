@@ -10,7 +10,8 @@ import 'package:base_river/app/shared/logger_types.dart';
 import 'package:base_river/app/shared/my_system_chrome_init.dart';
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 
 
 

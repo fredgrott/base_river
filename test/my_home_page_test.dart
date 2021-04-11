@@ -20,7 +20,7 @@ void main() {
   testGoldens('DeviceBuilder - one scenario - default devices', (tester) async {
     final builder = DeviceBuilder()
       ..addScenario(
-        widget: MyHomePage(),
+        widget: const MyHomePage(),
         name: 'default page',
       );
 

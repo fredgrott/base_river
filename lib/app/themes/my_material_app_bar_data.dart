@@ -13,9 +13,9 @@ MaterialAppBarData myMaterialAppBarData = MaterialAppBarData(
   centerTitle: true,
   brightness: Brightness.light,
   // when we want it transparent such as when using background images
-  backgroundColor: Colors.transparent,
+  backgroundColor: const Color(0x22663300),
   elevation: 0,
-  
+  bottomOpacity: 90
 );
 
 TextTheme myMaterialTitleTextTheme = const TextTheme(

@@ -17,7 +17,8 @@ const Color myScaffoldBackgroundColor = Color(0xff3700b3);
 // ignore: constant_identifier_names
 // ignore: non_constant_identifier_names
 // ignore: prefer_const_constructors
-ColorScheme MyColorScheme = ColorScheme(
+// ignore: non_constant_identifier_names
+ColorScheme MyColorScheme = const ColorScheme(
     primary: myPrimaryColor,
     primaryVariant: myPrimaryVariantColor,
     secondary: mySecondaryColor,

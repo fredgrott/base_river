@@ -7,7 +7,7 @@ import 'package:base_river/app/shared/init_log.dart';
 import 'package:base_river/app/shared/log_exception.dart';
 import 'package:base_river/app/shared/log_pens.dart';
 import 'package:base_river/app/shared/logger_types.dart';
-import 'package:base_river/app/shared/my_system_chrome_init.dart';
+
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -30,10 +30,7 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     initLog();
-    // disables the systemUI display at the top of the app
-    // any systemUI settings always go here at the initialize part of
-    // the main function
-    mySystemChromeInit();
+    
     
   } catch (error) {
     LogException("an error: $error");

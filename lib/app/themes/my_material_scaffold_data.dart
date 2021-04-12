@@ -6,6 +6,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 MaterialScaffoldData myMaterialScaffoldData = MaterialScaffoldData(
   // need this when doing background images on screens
-  extendBodyBehindAppBar: true
+  extendBodyBehindAppBar: true,
+  extendBody: true
 
 );

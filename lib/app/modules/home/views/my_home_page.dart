@@ -44,13 +44,30 @@ class _MyHomePageState extends State<MyHomePage> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(
           // per https://stackoverflow.com/questions/43727311/how-can-i-target-status-bar-color-or-opacity-in-a-flutter-app
-          statusBarColor: Color(0x22663300),
-          systemNavigationBarColor: Color(0x22663300),
+          statusBarColor: Color(0x22584103),
+          systemNavigationBarColor: Color(0x22584103),
+          systemNavigationBarDividerColor: Color(0x22584103),
           // per https://stackoverflow.com/questions/55211640/transparent-status-bar-in-flutter
           statusBarIconBrightness: Brightness.dark,
           systemNavigationBarIconBrightness: Brightness.dark,
         ),
-        child: PlatformScaffold(
+        child: Stack(
+          
+          children: <Widget>[
+            // ignore: avoid_unnecessary_containers
+            Container(
+                  child: FractionallySizedBox(
+                    heightFactor: 1.0,
+                    widthFactor: 1.0,
+                    child: Image.asset(
+                      "images/background.jpg",
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                PlatformScaffold(
           
             material: (
               _,
@@ -62,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
               __,
             ) =>
                 myCupertinoPageScaffoldData,
-            
+            backgroundColor: Image.asset('images/background.jpg').color,
             
             body: SafeArea(
               // Usually a better layout plan includes both the Parent Safe Widget and
@@ -134,8 +151,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ]),
             ),
             appBar: PlatformAppBar(
-              backgroundColor: const Color(0x22663300),
+              backgroundColor: const Color(0x22584103),
               title: PlatformText('Base River'),
+              
               material: (
                 _,
                 __,
@@ -146,10 +164,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 PlatformIconButton(
                   padding: EdgeInsets.zero,
                   icon: Icon(context.platformIcons.share),
+                  color: Colors.black87,
                   onPressed: () {},
                 ),
               ],
             ),
-            ));
+            )
+            ],
+          )
+        );
   }
 }

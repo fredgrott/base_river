@@ -12,5 +12,5 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 CupertinoNavigationBarData myCupertinoNavigationBarData = CupertinoNavigationBarData(
   brightness: Brightness.light,
   // when using background images in screens
-  backgroundColor: const Color(0x22663300),
+  backgroundColor: const Color(0x22584103),
 );

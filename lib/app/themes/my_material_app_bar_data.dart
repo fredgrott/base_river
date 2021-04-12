@@ -5,6 +5,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 MaterialAppBarData myMaterialAppBarData = MaterialAppBarData(
@@ -13,9 +14,17 @@ MaterialAppBarData myMaterialAppBarData = MaterialAppBarData(
   centerTitle: true,
   brightness: Brightness.light,
   // when we want it transparent such as when using background images
-  backgroundColor: const Color(0x22663300),
+  backgroundColor: const Color(0x22584103),
   elevation: 0,
-  bottomOpacity: 90
+  bottomOpacity: 90,
+  systemOverlayStyle: const SystemUiOverlayStyle(
+          // per https://stackoverflow.com/questions/43727311/how-can-i-target-status-bar-color-or-opacity-in-a-flutter-app
+          statusBarColor: Color(0x22584103),
+          systemNavigationBarColor: Color(0x22584103),
+          // per https://stackoverflow.com/questions/55211640/transparent-status-bar-in-flutter
+          statusBarIconBrightness: Brightness.dark,
+          systemNavigationBarIconBrightness: Brightness.dark,
+        ),
 );
 
 TextTheme myMaterialTitleTextTheme = const TextTheme(

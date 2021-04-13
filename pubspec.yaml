@@ -45,6 +45,7 @@ dependencies:
   riverpod: ^0.14.0+1
   flutter_riverpod: ^0.14.0+1
   hooks_riverpod: ^0.14.0+1
+  
 
 
 dev_dependencies:

@@ -11,6 +11,8 @@ import 'package:base_river/app/shared/logger_types.dart';
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 
@@ -31,12 +33,8 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     initLog();
+    SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.bottom]);
     
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Color(0x22584103),
-      systemNavigationBarColor: Color(0x22584103),
-      systemNavigationBarDividerColor: Color(0x22584103),
-    ));
   } catch (error) {
     LogException("an error: $error");
   }

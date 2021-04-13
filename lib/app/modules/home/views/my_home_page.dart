@@ -44,29 +44,22 @@ class _MyHomePageState extends State<MyHomePage> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(
           // per https://stackoverflow.com/questions/43727311/how-can-i-target-status-bar-color-or-opacity-in-a-flutter-app
-          statusBarColor: Color(0x22584103),
-          systemNavigationBarColor: Color(0x22584103),
-          systemNavigationBarDividerColor: Color(0x22584103),
+          statusBarColor: Colors.transparent,
+          systemNavigationBarColor: Colors.transparent,
+          systemNavigationBarDividerColor: Colors.transparent,
           // per https://stackoverflow.com/questions/55211640/transparent-status-bar-in-flutter
           statusBarIconBrightness: Brightness.dark,
           systemNavigationBarIconBrightness: Brightness.dark,
+          
         ),
         child: Stack(
           
           children: <Widget>[
             // ignore: avoid_unnecessary_containers
-            Container(
-                  child: FractionallySizedBox(
-                    heightFactor: 1.0,
-                    widthFactor: 1.0,
-                    child: Image.asset(
-                      "images/background.jpg",
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+            // Does not work with stack before scaffold and part of top body
+            // should only use one stack as the body content 
+            // is already set tyo extend.
+            // so need to set full screen still  in main
                 PlatformScaffold(
           
             material: (
@@ -82,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: Image.asset('images/background.jpg').color,
             
             body: SafeArea(
+              
               // Usually a better layout plan includes both the Parent Safe Widget and
               // a child Stack Widget as the container to hold a typical screen layout.
               // The main thing is that we have to have a Stack Widget to properly do

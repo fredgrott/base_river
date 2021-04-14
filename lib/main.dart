@@ -1,6 +1,5 @@
 import 'dart:async';
 
-
 import 'package:base_river/app/modules/appsplash/views/app_splash.dart';
 import 'package:base_river/app/shared/build_modes.dart';
 import 'package:base_river/app/shared/init_log.dart';
@@ -10,13 +9,10 @@ import 'package:base_river/app/shared/logger_types.dart';
 
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-
-
 
 /// The Main function of every Dart and Flutter Application which is basically the
 /// application boot-up entry point. Future-async'd and Zone'd to make sure that
@@ -33,8 +29,8 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     initLog();
-   // SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.bottom]);
-    
+    // set fullscreen
+    SystemChrome.setEnabledSystemUIOverlays([]);
   } catch (error) {
     LogException("an error: $error");
   }
@@ -112,7 +108,6 @@ Future<void> main() async {
           runAppFunction: () {
             runApp(
               ProviderScope(child: AppSplashExp()),
-              
             );
           },
           debugConfig: debugOptions,
@@ -138,8 +133,6 @@ Future<void> main() async {
   );
 }
 
-
-
 Future<void> _reportError(dynamic error, dynamic stackTrace) async {
   logger.info(
     'Caught error: $error',
@@ -162,4 +155,3 @@ Future<void> _reportError(dynamic error, dynamic stackTrace) async {
     }
   }
 }
-

@@ -37,10 +37,13 @@ Future<void> main() async {
 
   // to enable sentry add this [SentryHandler(SentryClient("YOUR_DSN_HERE"))]
   // due to web as a target platform we do not set the snapshot path
-  // setting for catcher
+  // setting for catcher.
+  // Using report mode as I have found it's better feedback in getting 
+  // user to send report if the stack trace is shown to them
+  final ReportMode reportMode = PageReportMode(showStackTrace: false);
   final CatcherOptions debugOptions =
       // ignore: avoid_redundant_argument_values
-      CatcherOptions(DialogReportMode(), [
+      CatcherOptions(reportMode, [
     ConsoleHandler(
         // ignore: avoid_redundant_argument_values
         enableApplicationParameters: true,

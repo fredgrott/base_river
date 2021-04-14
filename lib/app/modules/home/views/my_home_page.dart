@@ -52,15 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
           systemNavigationBarIconBrightness: Brightness.dark,
           
         ),
-        child: Stack(
-          
-          children: <Widget>[
-            // ignore: avoid_unnecessary_containers
-            // Does not work with stack before scaffold and part of top body
-            // should only use one stack as the body content 
-            // is already set tyo extend.
-            // so need to set full screen still  in main
-                PlatformScaffold(
+        child: PlatformScaffold(
           
             material: (
               _,
@@ -72,45 +64,42 @@ class _MyHomePageState extends State<MyHomePage> {
               __,
             ) =>
                 myCupertinoPageScaffoldData,
-            backgroundColor: Image.asset('images/background.jpg').color,
-            
-            body: SafeArea(
+            backgroundColor: Colors.transparent,
+            appBar: PlatformAppBar(
+              backgroundColor: Colors.transparent,
+              title: PlatformText('Base River'),
               
-              // Usually a better layout plan includes both the Parent Safe Widget and
-              // a child Stack Widget as the container to hold a typical screen layout.
-              // The main thing is that we have to have a Stack Widget to properly do
-              // background images as the Stack container has to be close
-              // in parent-child relationship to the scaffold widget.
-              // Plus,the stack widget has a children attribute to allow
-              // us to add all our simulated FABs etc.
-              //
-              // A core gist fundamental is that we sue specific widgets to
-              // group like widgets than need to be positionally grouped
-              // together. i.e. column and row widgets, etc.
-              //
-              // IMHO the best layout cheatsheet is the one at:
-              // https://github.com/TakeoffAndroid/flutter-examples
-              // which was created by Chandrasekar Kuppusamy
-              child: Stack(children: <Widget>[
-                // sets the background image
-                // ignore: avoid_unnecessary_containers
-                Container(
-                  child: const FractionallySizedBox(
-                    heightFactor: 1.0,
-                    widthFactor: 1.0,
-                    child: DecoratedBox(
-                      // ignore: avoid_redundant_argument_values
-                      position: DecorationPosition.background,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("images/background.jpg"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
+              material: (
+                _,
+                __,
+              ) =>
+                  myMaterialAppBarData,
+              cupertino: (_, __) => myCupertinoNavigationBarData,
+              trailingActions: <Widget>[
+                PlatformIconButton(
+                  padding: EdgeInsets.zero,
+                  icon: Icon(context.platformIcons.share),
+                  color: Colors.black87,
+                  onPressed: () {},
                 ),
-                Center(
+              ],
+            ),
+            body: Stack(children: <Widget>[ Center(
+                       child: Container(
+                         // have to instruct the DecoratedBox to expand to the 
+                         // expanded container size as we set body extended
+                         constraints: const BoxConstraints.expand(),
+                         decoration: const BoxDecoration(
+                           image: DecorationImage(
+                           image: AssetImage("images/background.jpg"),
+                           fit: BoxFit.cover,
+                         )
+                         
+                         )
+                       
+                       )
+              ),
+               Center(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -121,8 +110,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     }),
                   ],
                 )),
+
                 Positioned(
-                    bottom: 4,
+                    bottom: 54,
                     right: 34,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -142,30 +132,34 @@ class _MyHomePageState extends State<MyHomePage> {
                             icon: Icon(context.platformIcons.deleteSolid),
                           ),
                         ]))
-              ]),
-            ),
-            appBar: PlatformAppBar(
-              backgroundColor: const Color(0x22584103),
-              title: PlatformText('Base River'),
+
+
+              ]
               
-              material: (
-                _,
-                __,
-              ) =>
-                  myMaterialAppBarData,
-              cupertino: (_, __) => myCupertinoNavigationBarData,
-              trailingActions: <Widget>[
-                PlatformIconButton(
-                  padding: EdgeInsets.zero,
-                  icon: Icon(context.platformIcons.share),
-                  color: Colors.black87,
-                  onPressed: () {},
-                ),
-              ],
+              // Usually a better layout plan includes both the Parent Safe Widget and
+              // a child Stack Widget as the container to hold a typical screen layout.
+              // The main thing is that we have to have a Stack Widget to properly do
+              // background images as the Stack container has to be close
+              // in parent-child relationship to the scaffold widget.
+              // Plus,the stack widget has a children attribute to allow
+              // us to add all our simulated FABs etc.
+              //
+              // A core gist fundamental is that we sue specific widgets to
+              // group like widgets than need to be positionally grouped
+              // together. i.e. column and row widgets, etc.
+              //
+              // IMHO the best layout cheatsheet is the one at:
+              // https://github.com/TakeoffAndroid/flutter-examples
+              // which was created by Chandrasekar Kuppusamy
+              
+                
+               
+              ),
             ),
-            )
-            ],
-          )
-        );
+            
+      );
+            
+          
+        
   }
 }

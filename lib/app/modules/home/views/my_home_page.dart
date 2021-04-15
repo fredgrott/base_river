@@ -45,83 +45,130 @@ class _MyHomePageState extends State<MyHomePage> {
     // IMHO the best layout cheatsheet is the one at:
     // https://github.com/TakeoffAndroid/flutter-examples
     // which was created by Chandrasekar Kuppusamy
-    return PlatformScaffold(
-      material: (
-        _,
-        __,
-      ) =>
-          myMaterialScaffoldData,
-      cupertino: (
-        _,
-        __,
-      ) =>
-          myCupertinoPageScaffoldData,
-      backgroundColor: Colors.transparent,
-      appBar: PlatformAppBar(
-        backgroundColor: Colors.transparent,
-        title: PlatformText('Base River'),
-        material: (
-          _,
-          __,
-        ) =>
-            myMaterialAppBarData,
-        cupertino: (_, __) => myCupertinoNavigationBarData,
-        trailingActions: <Widget>[
-          PlatformIconButton(
-            padding: EdgeInsets.zero,
-            icon: Icon(context.platformIcons.share),
-            color: Colors.black87,
-            onPressed: () {},
+    // 
+    // An attempt at a full screen with transparent systemUis on android
+    // this way if we need either status-bar or navbar systemUis not 
+    // displayed on android we just add one out of three lines depending 
+    // out use cases as we will have 
+    //    display both keep original
+    //    display status-bar-only  ie top
+    //    display nav-bar-only ie bottom
+    //    or display no system-UI ie full naked screen
+    // 
+    //    It has a companion changes in the MainActivity:
+    // import android.os.Build
+    // import android.view.WindowManager
+    // import androidx.core.view.WindowCompat
+    // import io.flutter.embedding.android.FlutterActivity
+    //
+    //
+    // class MainActivity: FlutterActivity() {
+    //
+    // override fun onPostResume() {
+     //   super.onPostResume()
+     //
+        // to handle case of the bottom sys navbar
+        //if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O_MR1){
+         //   window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+         //   window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+        //}
+     //
+        // fixes edge to edge on 30 and beyond only
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+         //   WindowCompat.setDecorFitsSystemWindows(window, false)
+         //   window.navigationBarColor = 0
+       //
+       // }
+     //
+    //}
+   //
+   //}
+
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.dark.copyWith(
+          statusBarColor: Colors.transparent,
+          
+          systemNavigationBarColor: Colors.transparent,
+          systemNavigationBarDividerColor: Colors.transparent,
+        ),
+        child: PlatformScaffold(
+          material: (
+            _,
+            __,
+          ) =>
+              myMaterialScaffoldData,
+          cupertino: (
+            _,
+            __,
+          ) =>
+              myCupertinoPageScaffoldData,
+          
+          
+          appBar: PlatformAppBar(
+            backgroundColor: Colors.transparent,
+            title: PlatformText('Base River'),
+            material: (
+              _,
+              __,
+            ) =>
+                myMaterialAppBarData,
+            cupertino: (_, __) => myCupertinoNavigationBarData,
+            trailingActions: <Widget>[
+              PlatformIconButton(
+                padding: EdgeInsets.zero,
+                icon: Icon(context.platformIcons.share),
+                color: Colors.black87,
+                onPressed: () {},
+              ),
+            ],
           ),
-        ],
-      ),
-      // using stack to place background image at bottom and layer content on top
-      body: Stack(children: <Widget>[
-        Center(
-            child: Container(
-                // have to instruct the DecoratedBox to expand to the
-                // expanded container size as we set body extended
-                constraints: const BoxConstraints.expand(),
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                  image: AssetImage("images/background.jpg"),
-                  fit: BoxFit.cover,
-                )))),
-        Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            PlatformText("increment or decrement"),
-            Consumer(builder: (context, watch, _) {
-              final dynamic count = watch(counterProvider).state;
-              return Text('$count');
-            }),
-          ],
-        )),
-        // since  we are using a parent stack container we can fake a cross-platform non-nav-fab with 
-        // a positioned container that contains buttons
-        Positioned(
-            bottom: 54,
-            right: 34,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  PlatformIconButton(
-                    onPressed: () {
-                      context.read(counterProvider).state++;
-                    },
-                    padding: EdgeInsets.zero,
-                    icon: Icon(context.platformIcons.addCircledSolid),
-                  ),
-                  PlatformIconButton(
-                    onPressed: () {
-                      context.read(counterProvider).state--;
-                    },
-                    padding: EdgeInsets.zero,
-                    icon: Icon(context.platformIcons.deleteSolid),
-                  ),
-                ]))
-      ]),
-    );
+          // using stack to place background image at bottom and layer content on top
+          body: Stack(children: <Widget>[
+            Center(
+                child: Container(
+                    // have to instruct the DecoratedBox to expand to the
+                    // expanded container size as we set body extended
+                    constraints: const BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage("images/background.jpg"),
+                      fit: BoxFit.cover,
+                    )))),
+            Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                PlatformText("increment or decrement"),
+                Consumer(builder: (context, watch, _) {
+                  final dynamic count = watch(counterProvider).state;
+                  return Text('$count');
+                }),
+              ],
+            )),
+            // since  we are using a parent stack container we can fake a cross-platform non-nav-fab with
+            // a positioned container that contains buttons
+            Positioned(
+                bottom: 54,
+                right: 34,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      PlatformIconButton(
+                        onPressed: () {
+                          context.read(counterProvider).state++;
+                        },
+                        padding: EdgeInsets.zero,
+                        icon: Icon(context.platformIcons.addCircledSolid),
+                      ),
+                      PlatformIconButton(
+                        onPressed: () {
+                          context.read(counterProvider).state--;
+                        },
+                        padding: EdgeInsets.zero,
+                        icon: Icon(context.platformIcons.deleteSolid),
+                      ),
+                    ]))
+          ]),
+        ));
   }
 }

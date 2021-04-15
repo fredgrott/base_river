@@ -9,7 +9,7 @@ import 'package:base_river/app/shared/logger_types.dart';
 
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -29,8 +29,7 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     initLog();
-    // set fullscreen
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    
   } catch (error) {
     LogException("an error: $error");
   }

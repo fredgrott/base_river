@@ -128,6 +128,8 @@ And, I can be DM'ed on Keybase at:
 
 Specific articles:
 
+-[Flutter Background Coolness](https://medium.com/p/flutter-background-coolness-5bfbc6e6ebda)
+
 -[Logging, The Expert Way at Medium.com](https://medium.com/p/logging-the-expert-way-5beb5c967e44)
 
 General Resources:
